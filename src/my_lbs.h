@@ -10,5 +10,7 @@ struct my_lbs_cb  {
 };
 
 void my_lbs_init(struct my_lbs_cb *cb);
+int my_lbs_send_button_state_indicate(bool button_state);
+int my_lbs_send_sensor_notify(uint32_t sensor_value);
 
 #endif

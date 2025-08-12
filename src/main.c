@@ -16,6 +16,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 #define DEVCE_NAME_LEN         (sizeof(DEVCE_NAME) - 1 )
 static struct k_work adv_work;  
 // static int32_t conn
+static void send_data_thread(void);
 
 void led_callback(bool flat)
 {
@@ -96,6 +97,11 @@ static struct bt_conn_cb conn_callbacks = {
         .le_param_updated = NULL,
 };
 
+#define STACKSIZE 1024
+#define PRIORITY 5
+
+K_THREAD_DEFINE(send_data_thread_id, STACKSIZE, send_data_thread, NULL, NULL,
+ NULL, PRIORITY, 0, 0);
 
 
 int main(void)
@@ -126,5 +132,25 @@ int main(void)
         {
                 LOG_INF("Hello, World!");
                 k_msleep(1000); // Sleep for 1000 milliseconds (1 second)
-        }       
+
+                my_lbs_send_button_state_indicate(1);
+                 k_msleep(1000); // Sleep for 1000 milliseconds (1 second)
+                my_lbs_send_button_state_indicate(0);
+
+        }
+}
+
+
+static void send_data_thread(void)
+{
+
+ static uint16_t cnt=0;
+ 
+ while(1){
+ /* Simulate data */
+//  simulate_data();
+ /* Send notification, the function sends notifications only if a client is subscribed */
+ my_lbs_send_sensor_notify(cnt++);  
+ k_sleep(K_MSEC(1000));
+ } 
 }

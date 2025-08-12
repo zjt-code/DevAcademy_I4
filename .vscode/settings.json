@@ -1,6 +1,11 @@
 {
     "C_Cpp.default.configurationProvider": "nordic-semiconductor.nrf-connect",
     "files.associations": {
-        "conn.h": "c"
+        "conn.h": "c",
+        "my_lbs.h": "c",
+        "string_view": "c"
+    },
+    "nrf-connect.debugging.bindings": {
+        "${workspaceFolder}/build/DevAcademy_I4": "Launch DevAcademy_I4"
     }
 }

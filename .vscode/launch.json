@@ -1,0 +1,12 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "nrf-connect",
+			"request": "launch",
+			"name": "Launch DevAcademy_I4",
+			"config": "${workspaceFolder}/build/DevAcademy_I4",
+			"runToEntryPoint": "main"
+		}
+	]
+}
