@@ -3,4 +3,7 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(DevAcademy_I4)
 
-target_sources(app PRIVATE src/main.c)
+target_sources(app PRIVATE 
+src/main.c
+src/my_lbs.c    
+)
